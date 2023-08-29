@@ -1,9 +1,11 @@
 import productService from "./service.js";
 
-const getAllProduct = async (req, res) => {
+
+const getAllProduct =  async (res) => {
     try {
         const products = await productService.allProduct();
-        res.status(200).send(products)
+        // res.status(200).send(products)
+        return products
     }
     catch (err) {
         res.status(404).send('product is not found')
