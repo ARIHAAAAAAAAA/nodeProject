@@ -7,8 +7,6 @@ async function readFiles() {
 }
 
 async function writeFiles(newData) {
-    // const fetch1 = await fetch('https://fakestoreapi.com/products')
-    // const dataFetch = await fetch1.json()
     jsonfile.writeFileSync('./data/product.json', newData)
     return newData
 

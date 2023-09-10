@@ -5,7 +5,7 @@ export const checkPrice = async (req, res, next) => {
     data.forEach(element => {
         res.locals = element.price > 100 ;
     });
-    next()
+    next();
 }
 
 // export const checkPrice = async (req, res, next) => {

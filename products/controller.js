@@ -1,10 +1,10 @@
 import productService from "./service.js";
 
 
-const getAllProduct =  async (res) => {
+const getAllProduct =  async (req,res) => {
     try {
         const products = await productService.allProduct();
-        // res.status(200).send(products)
+        res.status(200).send(products)
         return products
     }
     catch (err) {
@@ -15,6 +15,7 @@ const getAllProduct =  async (res) => {
 const getProductById = async (req, res) => {
     try {
         const id = +req.params.id;
+        console.log(id);
         const product = await productService.ProductById(id);
         res.status(200).json(product)
     }
@@ -58,6 +59,17 @@ const putProductById = async (req,res)=>{
     }
     
 }
+// mongo
+const postAddProducts = async (req, res) =>{
+    try{
+        const newProduct = req.body;
+        const add = await productService.addProducts(newProduct);
+        res.status(200).json(newProduct);
+    }
+    catch (err) {
+        res.status(404).send('product is not found')
+    }
+}
 
 const productController = {
     getAllProduct,
@@ -65,7 +77,9 @@ const productController = {
     postAddProduct,
     deleteProductById,
     putProductById,
+
+    postAddProducts
     
 }
 
-    export default productController
+export default productController

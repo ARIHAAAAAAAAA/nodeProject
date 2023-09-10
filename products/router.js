@@ -4,14 +4,13 @@ import { checkPrice } from './middleware.js';
 
 const productRouter = express.Router();
 // middleware
-productRouter.get('/', checkPrice, async(req, res) => {
-  let foo = await productController.getAllProduct(res)
-  await res.send(foo)
-});
+productRouter.get('/', checkPrice, productController.getAllProduct);
 
 productRouter.get('/:id',productController.getProductById);
 
 productRouter.post('/',productController.postAddProduct);
+
+productRouter.post('/many',productController.postAddProducts);
 
 productRouter.delete('/:id',productController.deleteProductById);
 
